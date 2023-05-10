@@ -72,5 +72,16 @@ app.delete("/books/deletebook", async (req, res) => {
     }
 })
 
+app.delete("/books/deleteallbooks", async (req, res) => {
+    const deleteBooks = await book.deleteMany({});
+
+    const successReponse = {
+        message: "Entries Deleted:",
+        details: deleteBooks
+    };
+
+    res.status(200).send(successReponse)
+})
+
 const port = process.env.PORT
 app.listen(port, () => console.log(`Listening on Port ${port}`))
